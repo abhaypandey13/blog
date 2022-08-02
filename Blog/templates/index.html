@@ -1,0 +1,39 @@
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    <h1>Index Page here!!</h1>
+  </body>
+</html> -->
+{% extends 'base.html'%}
+
+{%block title%} {{title}} {%endblock%}
+
+{%block content%}
+<!-- <h1>Hello index</h1> -->
+{% if blogs %}
+<ul>
+  <h1>Posted Blogs</h1>
+  {% for blog in blogs %}
+  <li><a href="{% url 'blogview' blog.id%}"><h3>{{blog.title}}</h3></a>{{blog.created_at}}
+    <a href="{%url 'delete' blog.id%}">Delete</a></li>
+  <!-- <ul>
+    <li>{{blog.content}}</li>
+    <li></li>
+    <li>{{blog_photo}}</li>
+  </ul> -->
+
+  {% endfor%}
+</ul>
+{% endif %}
+
+<form method="post">
+  {%csrf_token%}
+  <button type="submit" name="logout"> Logout</button>
+</form>
+
+
+{% endblock%}
